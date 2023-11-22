@@ -3,7 +3,7 @@ from flask import Flask, url_for
 app = Flask("__main__")
 
 @app.route("/")
-def index():
+def inde():
     msg = "Hello Wolrd !!"
     return msg
 
