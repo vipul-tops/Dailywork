@@ -4,15 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
     <center>
-        <table border="1">
-            <tr>
-                <td>Srn</td>
-                <
-            </tr>
-
+        <h1>Show Page</h1>
+        <a href="{% url 'insert' %}" style="background: red; font-size: 20px;"> Insert Data </a>
+        <a href="{% url 'show' %}" style="background: palegreen; font-size: 20px;"> Show Data </a>
+        <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Contact</th>
+                  <th scope="col">Address</th>
+                  <th scope="col">Edit</th>
+                  <th scope="col">Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for i in st %}
+                <tr>
+                  <td>{{i.id}}</td>
+                  <td>{{i.name}}</td>
+                  <td>{{i.email}}</td>
+                  <td>{{i.contact}}</td>
+                  <td>{{i.address}}</td>
+                  <td>
+                      <form action="{% url 'edit' pk=i.id %}" name="editform" method="post">
+                        {% csrf_token%}
+                          <input type="submit" value="Edit" class="btn btn-primary">
+                      </form>
+                  </td>
+                  <td>
+                      <form action="{% url 'delete' pk=i.id %}" name="deleteform" method="post">
+                        {% csrf_token%}
+                          <input type="submit" value="Delete" class="btn btn-danger">
+                      </form>
+                  </td>
+                </tr>
+                {% endfor %}
+                
+              </tbody>
         </table>
     </center>
 </body>

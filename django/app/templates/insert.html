@@ -11,9 +11,9 @@
         <b style="color: red;">{{msg}}</b>
     {% endif %}
     <br>
-    <a href="{% url 'index' %}">Home</a>
-    <h1>HTML Forms</h1>
-    <form action="{% url 'forms' %}" method="post">
+    <a href="{% url 'show' %}"> Show Data </a>
+    <h1>Insert Data</h1>
+    <form action="{% url 'insert' %}" method="post">
     {% csrf_token %}    
         <table border="1">
             <tr>
