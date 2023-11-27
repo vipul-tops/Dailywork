@@ -4,6 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script>
+        function check_name(){
+            var f = document.frm.name.value;
+            var reg = /^[A-Za-z]+$/;
+
+            if (f.trim()==""){
+                document.getElementById("error").innerHTML="Please Enter Your Name";
+            }
+            else if(!reg.test(f)){
+                document.getElementById("error").innerHTML="Please Enter Only Alphabets";
+            }
+            else{
+                document.getElementById("error").innerHTML="";
+            }
+        }
+    </script>
 </head>
 <body>
     <center>
@@ -13,12 +29,14 @@
     <br>
     <a href="{% url 'show' %}"> Show Data </a>
     <h1>Insert Data</h1>
-    <form action="{% url 'insert' %}" method="post">
+    <form action="{% url 'insert' %}" method="post" name="frm">
     {% csrf_token %}    
-        <table border="1">
+        <table>
             <tr>
                 <td>Name </td>
-                <td><input type="text" name="name"></td>
+                <td><input type="text" name="name" onblur="check_name();"></td>
+                <td><span id="error" style="color: red;"></span></td>
+
             </tr>
             <tr>
                 <td>Email </td>

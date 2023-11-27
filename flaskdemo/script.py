@@ -47,6 +47,8 @@ def process_json():
     else:
         return " It has Not Any Json Data"
 
+
+# Cookie Manage
 @app.route("/login", methods=['GET','POST'])
 def login():
     if request.method == "POST":
@@ -72,5 +74,7 @@ def logout():
     res = make_response(render_template('get_profile.html'))
     res.delete_cookie('userID')
     return res
+
+# Session Manage 
 
 app.run(debug=True)
